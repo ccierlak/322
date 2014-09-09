@@ -51,15 +51,12 @@ int main(int argc, char* argv[])
 	}
 	int* parsedInput = parse(input, len);
 	int* parsedDecimal = toDecimal(parsedInput);
-	free(decimalArray);
 	int* parsedParity = toParity(parsedInput);
-	free(parityArray);
 	int printSuccess= printTable(parsedInput,parsedDecimal,parsedParity);
 	free(parsedInput);
 	free(parsedDecimal);
 	free(parsedParity);
 	free(parsedInput);
-	free(inputArray);
 	system("pause");
 
 	return 1;
