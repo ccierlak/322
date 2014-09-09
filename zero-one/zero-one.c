@@ -51,8 +51,15 @@ int main(int argc, char* argv[])
 	}
 	int* parsedInput = parse(input, len);
 	int* parsedDecimal = toDecimal(parsedInput);
+	free(decimalArray);
 	int* parsedParity = toParity(parsedInput);
+	free(parityArray);
 	int printSuccess= printTable(parsedInput,parsedDecimal,parsedParity);
+	free(parsedInput);
+	free(parsedDecimal);
+	free(parsedParity);
+	free(parsedInput);
+	free(inputArray);
 	system("pause");
 
 	return 1;
@@ -73,6 +80,7 @@ int* parse(char* input, int len)
 	for(index=1; index<len; index++) {
 		//ascii to decimal, 48=0
 		parsedInput[index]=(int)input[index-1]-48;
+		printf("%d @parsedindex %d\n",parsedInput[index],index);
 	}
 	while(zeros>0) {
 		parsedInput[len-zeros]=0;
@@ -123,6 +131,7 @@ int* toDecimal(int* inputArray)
 				break;
 			}
 		}
+		//printf("%d @index %d\t%d @deciindex %d\n",inputArray[index],index,decimalArray[deciIndex],deciIndex);
 
 	}
 	return decimalArray;
@@ -148,6 +157,7 @@ int* toParity(int* inputArray)
 			//stores parity as 1 for odd, 0 for even
 			parityArray[parityIndex]%=2;
 		}
+		//printf("%d parity\n",parityArray[parityIndex]);
 
 	}
 	return parityArray;

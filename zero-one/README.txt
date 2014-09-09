@@ -9,3 +9,4 @@ Remaining issue is won't wait to read user input for stdin.
 9/2 realized I was not using primitives to read files, began rewriting
 9/4 finished printTable() and used read() to read from stdin and files
 9/5 set up a git on github since I could not access git on git.pioneering.csun.edu
+9/9 woke up in the middle of the night realizing that I had forgotten to free my memory
