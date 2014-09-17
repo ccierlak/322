@@ -30,8 +30,7 @@ int main(int argc, char* argv[])
 			if(myFile==0) {
 				//myFile=0 when error
 				printf("could not open file %d\n",index);
-				system("pause");
-				return -1;
+						return -1;
 			}
 		}
 		input=(char*)malloc(sizeof(char));
@@ -57,8 +56,6 @@ int main(int argc, char* argv[])
 	free(parsedDecimal);
 	free(parsedParity);
 	free(parsedInput);
-	system("pause");
-
 	return 1;
 }
 
