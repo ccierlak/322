@@ -4,7 +4,6 @@
 int main(int argc, char *argv[], char *envp[])
 {
 	pid_t childPid;
-	int i;
 	childPid=fork();
 
 	if(childPid==0) {
@@ -14,9 +13,9 @@ int main(int argc, char *argv[], char *envp[])
 	} else {
 		//in the parent
 		int *status;
-		fprintf(stderr,"$$ %s: %d\n",argv[1],childPid);
+		fprintf(stderr,"%s $$: %d\n",argv[1],childPid);
 		waitpid(childPid,&status,0);//waits for forked child
-		fprintf(stderr,"$$ %s status: %d\n",argv[1],status);
+		fprintf(stderr,"%s $?: %d\n",argv[1],status);
 	}
 	return 1;
 }
