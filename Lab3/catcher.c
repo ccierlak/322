@@ -6,9 +6,9 @@
 void signalHandler(int);
 int sig_name2number(char *);
 char * sig_number2name(int);
+void increaseCount(int);
 int main(int argc, char *argv[])
 {
-	int allCount =0;
 	int i;
 	for(i=1; i<argc; i++) {
 		if(signal(sig_name2number(argv[i]),signalHandler)==SIG_ERR) {
@@ -20,9 +20,8 @@ int main(int argc, char *argv[])
 	fprintf(stderr,"catcher: $$= %d\n",getpid());
 	for(;;) {
 		pause();
-		allCount++;
+		//loop forever
 	}
-					fprintf(stderr,"catcher: total signals count = %d",allCount);
 }
 
 void signalHandler(int signalNum)
@@ -37,17 +36,31 @@ void signalHandler(int signalNum)
 		fprintf(stderr,"cannot catch signal number %d\n",signalNum);
 		//when signal errors
 	} else {
+		increaseCount(1);
+		//increase signal count
 		time_t caughtTime;
 		time(&caughtTime);
 		fprintf(stdout,"%s caught at %d\n",sig_number2name(signalNum),caughtTime);
 	}
 	if(termCount==3) {
-		signal(SIGINT,SIG_DFL);
-		raise(SIGINT);
-		//if 3 SIGTERMS are caught terminate by raising sig to itself
+		increaseCount(-1);
+		//if 3 SIGTERMS are caught send end signal to increaseCount
 	}
 }
 
+void increaseCount(int num)
+{
+	static int sigCount=0;
+	if(num<0) {
+		//negative num signals process to end
+		fprintf(stderr,"catcher: total signals count = %d",sigCount);
+		signal(SIGINT,SIG_DFL);
+		raise(SIGINT);
+	} else {
+		//positive num increases signal count
+		sigCount++;
+	}
+}
 int sig_name2number(char *s)
 {
 
