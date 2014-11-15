@@ -113,7 +113,7 @@ void makeMole(int moleno)
 				mole = "mole2";
 			}
 			char * const args[]= {mole,NULL};
-			execv("home/Collin/Code/prog6/mole.exe",args);
+			execv("~/prog6/mole",args);
 			//if this runs there was an error
 			printf("execv error");
 			exit(1);
