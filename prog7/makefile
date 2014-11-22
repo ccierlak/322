@@ -1,5 +1,5 @@
 # Name: Collin Cierlak
-# Project: Lab6 - daemon
+# Project: Lab7 - Elephant
 
 # This is a Makefile for my lab assignment. It allows me to easily and accurately rebuild
 # the lab assignment.
@@ -16,18 +16,17 @@ CFLAGS=-g
 
 # Here is my default target for the Makefile.  When I type make, this first target will
 # be created. I.e., all the executables
-all: spiritd mole
-
+all: add gen
 
 # On the following lines (which _must_ start with a tab), are the commands I need to type -- 
 # each time my source file is modified.
-spirited: spiritd.c
-	$(CC) $(CFLAGS) -c spiritd.c
-	$(CC) $(CFLAGS) -o $@ spiritd.o
+add: matrix_add.c
+	$(CC) $(CFLAGS) -c matrix_add.c
+	$(CC) $(CFLAGS) -o $@ matrix_add.o
 
-mole: mole.c
-	$(CC) $(CFLAGS) -c mole.c
-	$(CC) $(CFLAGS) -o $@ mole.o
+gen: matrix_gen.c
+	$(CC) $(CFLAGS) -c matrix_gen.c
+	$(CC) $(CFLAGS) -o $@ matrix_gen.o
 
 # By convention, I always have a target called
 # "clean" that I used to define all temporary
